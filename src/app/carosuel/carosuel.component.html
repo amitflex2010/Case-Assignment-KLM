@@ -1,0 +1,22 @@
+<div class="slideshow-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+
+
+    <div class="mySlides fade">
+        <div class="play-pause">
+            <span *ngIf="autoPlay"> <i style="font-size:24px" class="fa">&#xf04b;</i>  </span>
+            <span *ngIf="!autoPlay"><i style="font-size:24px" class="fa">&#xf04c;</i> </span>
+        </div>
+        <div class="blocktext">{{current.text}}</div>
+        <img id="imgcontainer" *ngIf="current.picurl" src="../assets{{current.picurl}}" style="width:100%">
+        <div class="placeholder"><img src="../assets/static.png"></div>
+    </div>
+
+    <div class="controls" [style.visibility]="controlsVisible">
+        <a id="prev" class="prev" (click)="showPrevSlides()"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        <a id="next" class="next" (click)="showNextSlides()"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+        <p class="bullet">
+            <span class="dot" [ngClass]="{'active': slideIndex === i}" (click)="showCurrentSlide(i)" *ngFor="let item of carouselData; let i = index"></span>
+        </p>
+    </div>
+</div>
