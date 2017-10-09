@@ -48,7 +48,7 @@ it('should retrieve all results',
       res.mockRespond(new Response(response));
     });
     tick();
-    carosuelService.fetchSlideData().subscribe((response) => {
+    carosuelService.getCarosuelData().subscribe((response) => {
       expect(response.picurl).toContain('home1');
     });
   }))
@@ -63,7 +63,7 @@ inject([CarosuelService, XHRBackend], fakeAsync((carosuelService: CarosuelServic
       res.mockError(new MockError(responseOpts));
       });
       tick();
-      carosuelService.fetchSlideData().subscribe((response) => {
+      carosuelService.getCarosuelData().subscribe((response) => {
         expect(response).toContain('home1');
       },
     error => {expect(error.statusCode).toEqual(404);

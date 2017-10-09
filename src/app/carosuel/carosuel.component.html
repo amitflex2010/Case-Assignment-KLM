@@ -2,9 +2,9 @@
 
 
     <div class="mySlides fade">
-        <div class="play-pause">
-            <span *ngIf="autoPlay"> <i style="font-size:24px" class="fa">&#xf04b;</i>  </span>
-            <span *ngIf="!autoPlay"><i style="font-size:24px" class="fa">&#xf04c;</i> </span>
+        <div class="play-pause" (click)="playPause()">
+            <span id="play" *ngIf="autoPlay"> <i  class="fa fontsize24">&#xf04b;</i>  </span>
+            <span id="pause" *ngIf="!autoPlay"><i  class="fa fontsize24">&#xf04c;</i> </span>
         </div>
         <div class="blocktext">{{current.text}}</div>
         <img id="imgcontainer" *ngIf="current.picurl" src="../assets{{current.picurl}}" style="width:100%">

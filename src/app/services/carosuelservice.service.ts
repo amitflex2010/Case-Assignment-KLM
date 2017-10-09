@@ -15,7 +15,7 @@ export class CarosuelService {
    * Fetches slides data through http call
    * @return {Observable<any>} return observable
    */
-  fetchSlideData(): Observable<any> {
+  getCarosuelData(): Observable<any> {
     return this.http.get('../../assets/slidedata.json')
     .map(response => response.json())
     .catch((res: Response) => this.onRequestError(res));

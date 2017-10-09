@@ -200,7 +200,21 @@ li
     padding: 0 12px;
 
 
-.mya-loginwidget-header-menu__item 
+.mya-loginwidget-header-menu__itemfb 
+    float: left;
+    border-right: 1px solid #c5deeb;
+    height: 11px;
+    overflow: visible;
+    padding: 0 12px;
+
+.mya-loginwidget-header-menu__itemlogin
+    float: left;
+    border-right: 1px solid #c5deeb;
+    height: 11px;
+    overflow: visible;
+    padding: 0 12px;
+
+.mya-loginwidget-header-menu__itemregister
     float: left;
     border-right: 1px solid #c5deeb;
     height: 11px;
@@ -209,10 +223,16 @@ li
 
 @media screen and (min-width: 769px) and (max-width: 1024px)
 
-    .mya-loginwidget-header-menu__item
-            display: none;      
+    .mya-loginwidget-header-menu__itemfb
+        display: none;
+
+    .mya-loginwidget-header-menu__itemlogin
+        display: block;
+
+    .mya-loginwidget-header-menu__itemregister
+        display: block;     
             
-@media screen and (max-width: 768px) and (min-width: 321px) 
+@media screen and (max-width: 768px) and (min-width: 375px) 
 
     .g-hdr-branding-logo-rda 
             left: 81px;
@@ -229,9 +249,10 @@ li
             display: none;
 
     .g-hdr-account-menu
-            display: none;      
+        display: none;
+              
     
-@media screen and (max-width: 320px) 
+@media screen and (max-width: 375px) 
 
     .g-hdr-branding-logo-rda 
             left: 81px;
@@ -248,4 +269,5 @@ li
             display: none;
 
     .g-hdr-account-menu
-            display: none;     
+        diplay: none;
+              

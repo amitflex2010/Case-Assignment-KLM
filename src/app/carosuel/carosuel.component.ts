@@ -17,8 +17,8 @@ export class CarosuelComponent implements OnInit {
   intervalTime = 2000;
   interval: any;
 
-  maxMobilewidth: Number = 425;
-  maxTabletwidth: Number = 768;
+  maxMobilewidth: Number = 375;
+  maxTabletwidth: Number = 769;
 
   private subject = new Subject<any>();
 
@@ -31,6 +31,11 @@ export class CarosuelComponent implements OnInit {
    */
   @HostListener('window:resize', ['$event']) onWindowResize() {
 
+    if (window.innerWidth < this.maxTabletwidth) {
+      this.controlsVisible = 'visible';
+    }else {
+      this.controlsVisible = 'hidden';
+    }
     this.subject.next({ screensize: window.innerWidth });
   }
 
@@ -42,10 +47,9 @@ export class CarosuelComponent implements OnInit {
   }
 
   initCarosuel() {
-    this.carosuelservice.fetchSlideData()
+    this.carosuelservice.getCarosuelData()
     .subscribe(data => {
        this.carouselData = data;
-       // this.current = this.slidesData[this.slideIndex];
        this.showSlides(this.slideIndex);
        this.controlsVisible = 'visible';
     },
@@ -55,7 +59,7 @@ export class CarosuelComponent implements OnInit {
   }
 
   setControlValue(val) {
-    if (val > this.maxMobilewidth && val < this.maxTabletwidth) {
+    if (val.screensize >= this.maxMobilewidth && val.screensize <= this.maxTabletwidth) {
       this.controlsVisible = 'visible';
     }
   }
@@ -64,9 +68,9 @@ export class CarosuelComponent implements OnInit {
    * Display the image in the slide by setting current slide
    * @param {[number]} n current index of the slide
    */
-  showSlides(n) {
-    if (n > this.carouselData.length - 1) { this.slideIndex = 0; }
-    if (n < 0) { this.slideIndex = this.carouselData.length - 1; }
+  showSlides(nCount) {
+    if (nCount > this.carouselData.length - 1) { this.slideIndex = 0; }
+    if (nCount < 0) { this.slideIndex = this.carouselData.length - 1; }
     this.current = this.carouselData[this.slideIndex];
 
     if (this.autoPlay) {
@@ -76,11 +80,17 @@ export class CarosuelComponent implements OnInit {
   }
 
   /**
+   * Handler for toggle pause/play button
+   */
+  playPause() {
+    this.autoPlay = !this.autoPlay;
+  }
+  /**
    * Show the slide when clicking on bullet indicator on carousel
    * @param {[number]} n Index of the slide in data array
    */
   showCurrentSlide(n) {
-    if (window.innerWidth < 321) {  // disble click on bullet in mobile device
+    if (window.innerWidth > this.maxMobilewidth) {  // disble click on bullet in mobile device
       return;
     }
     this.showSlides(this.slideIndex = n);
@@ -88,13 +98,12 @@ export class CarosuelComponent implements OnInit {
 
  /**
   * Setup the auto play for the carousel
-  * @param {[numer]} ms Time interval in milliseconds
+  * @param {[number]} ms Time interval in milliseconds
   */
   autoPlaySlides(ms) {
     this.autoPlay = true;
     this.intervalTime = ms;
     this.slideIndex++ ;
-    console.log(this.slideIndex);
     this.interval = setInterval(this.showSlides.bind(this, this.slideIndex), ms);
   }
 
