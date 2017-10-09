@@ -1,5 +1,8 @@
 # KLMCaseAssignment
 
+## Development Approach
+For this carosuel component, I have used Angular4, HTML5, CSS and TypeScript. I have created the a template which contains html structure of the carosuel. By calling the data service i received the data for the carosuel and set it up. Tested with unit test and end to end test.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
 
 ## Development server
