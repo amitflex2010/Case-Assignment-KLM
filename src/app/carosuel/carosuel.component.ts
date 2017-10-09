@@ -18,7 +18,7 @@ export class CarosuelComponent implements OnInit {
   interval: any;
 
   maxMobilewidth: Number = 375;
-  maxTabletwidth: Number = 769;
+  maxTabletwidth: Number = 768;
 
   private subject = new Subject<any>();
 
