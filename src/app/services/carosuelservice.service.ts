@@ -14,6 +14,7 @@ export class CarosuelService {
   /**
    * Fetches slides data through http call
    * @return {Observable<any>} return observable
+   * @memberof CarosuelService
    */
   getCarosuelData(): Observable<any> {
     return this.http.get('../../assets/slidedata.json')
@@ -25,7 +26,7 @@ export class CarosuelService {
    * Handles any http request error.
    * @param {Response} res Error object
    * @returns Observable of Error object
-   * @memberof BookingService
+   * @memberof CarosuelService
    */
 
   onRequestError(res: Response) {

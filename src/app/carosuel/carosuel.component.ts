@@ -28,6 +28,7 @@ export class CarosuelComponent implements OnInit {
    * Listen to the window resize event and set the visiblity of controls
    * @param {resize'} 'window    window resize event
    * @param {[event]}  '$event']) onWindowResize( event object
+   * @memberof CarosuelComponent
    */
   @HostListener('window:resize', ['$event']) onWindowResize() {
 
@@ -46,6 +47,10 @@ export class CarosuelComponent implements OnInit {
     .subscribe((val) => this.setControlValue(val));
   }
 
+  /**
+   * Initialize the carosuel data by calliing the data service and setting the value for slide show.
+   * @memberof CarosuelComponent
+   */
   initCarosuel() {
     this.carosuelservice.getCarosuelData()
     .subscribe(data => {
@@ -58,6 +63,11 @@ export class CarosuelComponent implements OnInit {
     });
   }
 
+  /**
+   * Set the controls visibility as the value received.
+   * @param {[number]} val screen size object.
+   * @memberof CarosuelComponent
+   */
   setControlValue(val) {
     if (val.screensize >= this.maxMobilewidth && val.screensize <= this.maxTabletwidth) {
       this.controlsVisible = 'visible';
@@ -67,6 +77,7 @@ export class CarosuelComponent implements OnInit {
    /**
    * Display the image in the slide by setting current slide
    * @param {[number]} n current index of the slide
+   * @memberof CarosuelComponent
    */
   showSlides(nCount) {
     if (nCount > this.carouselData.length - 1) { this.slideIndex = 0; }
@@ -80,14 +91,17 @@ export class CarosuelComponent implements OnInit {
   }
 
   /**
-   * Handler for toggle pause/play button
+   * Handler for toggle pause/play button.
+   * @memberof CarosuelComponent
    */
   playPause() {
     this.autoPlay = !this.autoPlay;
   }
+
   /**
    * Show the slide when clicking on bullet indicator on carousel
    * @param {[number]} n Index of the slide in data array
+   * @memberof CarosuelComponent
    */
   showCurrentSlide(n) {
     if (window.innerWidth > this.maxMobilewidth) {  // disble click on bullet in mobile device
@@ -99,6 +113,7 @@ export class CarosuelComponent implements OnInit {
  /**
   * Setup the auto play for the carousel
   * @param {[number]} ms Time interval in milliseconds
+  * @memberof CarosuelComponent
   */
   autoPlaySlides(ms) {
     this.autoPlay = true;
@@ -107,8 +122,9 @@ export class CarosuelComponent implements OnInit {
     this.interval = setInterval(this.showSlides.bind(this, this.slideIndex), ms);
   }
 
-/*
-To Play the sllideShow
+/**
+* To Play the sllideShow.
+* @memberof CarosuelComponent
 */
 
 playSlideShow() {
@@ -116,11 +132,11 @@ playSlideShow() {
         this.autoPlay = true;
         this.resetTimer();
     }
-
-    this.autoPlaySlides(this.intervalTime);
+this.autoPlaySlides(this.intervalTime);
 }
 
-/* To Pause the slide show
+/** To Pause the slide show
+ * @memberof CarosuelComponent
 */
 
 pauseSlideShow() {
@@ -130,7 +146,8 @@ pauseSlideShow() {
     }
 }
 
-/* To reset the auto play timer
+/** To reset the auto play timer
+ * @memberof CarosuelComponent
 */
 
 resetTimer() {
@@ -141,8 +158,9 @@ resetTimer() {
 }
 
 /**
-   * Moves to previous slide
-  */
+* Moves to previous slide
+* @memberof CarosuelComponent
+*/
 showPrevSlides() {
     if (this.autoPlay) {
       this.resetTimer();
@@ -152,17 +170,17 @@ showPrevSlides() {
     }
   }
 
-/*
-
   /**
-   * Moves to next slide
-   */
+  * Moves to next slide
+  * @memberof CarosuelComponent
+  */
   showNextSlides() {
     this.showSlides(this.slideIndex += 1);
   }
 
    /**
    * Handler for mouse enter event which makes control visible on large screen
+   * @memberof CarosuelComponent
    */
   onMouseEnter() {
     if (window.innerWidth <= this.maxTabletwidth) {
@@ -176,6 +194,7 @@ showPrevSlides() {
 
    /**
    * Handler for mouse leave event which makes control hidden on large screen
+   * @memberof CarosuelComponent
    */
   onMouseLeave() {
     if (window.innerWidth <= this.maxTabletwidth) {
