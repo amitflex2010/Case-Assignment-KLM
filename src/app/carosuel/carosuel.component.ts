@@ -17,7 +17,7 @@ export class CarosuelComponent implements OnInit {
   intervalTime = 2000;
   interval: any;
 
-  maxMobilewidth: Number = 375;
+  maxMobilewidth: Number = 425;
   maxTabletwidth: Number = 768;
 
   private subject = new Subject<any>();
@@ -104,9 +104,10 @@ export class CarosuelComponent implements OnInit {
    * @memberof CarosuelComponent
    */
   showCurrentSlide(n) {
-    if (window.innerWidth > this.maxMobilewidth) {  // disble click on bullet in mobile device
+    if (window.innerWidth <= this.maxMobilewidth) {  // disble click on bullet in mobile device
       return;
     }
+
     this.showSlides(this.slideIndex = n);
   }
 
@@ -127,19 +128,19 @@ export class CarosuelComponent implements OnInit {
 * @memberof CarosuelComponent
 */
 
-playSlideShow() {
+  playSlideShow() {
     if (!this.autoPlay) {
         this.autoPlay = true;
         this.resetTimer();
     }
-this.autoPlaySlides(this.intervalTime);
+  this.autoPlaySlides(this.intervalTime);
 }
 
 /** To Pause the slide show
  * @memberof CarosuelComponent
 */
 
-pauseSlideShow() {
+  pauseSlideShow() {
     if (this.autoPlay) {
         this.autoPlay = false;
         this.resetTimer();
@@ -150,7 +151,7 @@ pauseSlideShow() {
  * @memberof CarosuelComponent
 */
 
-resetTimer() {
+  resetTimer() {
   if (this.interval) {
       clearInterval(this.interval);
       this.interval = null;
@@ -161,7 +162,7 @@ resetTimer() {
 * Moves to previous slide
 * @memberof CarosuelComponent
 */
-showPrevSlides() {
+  showPrevSlides() {
     if (this.autoPlay) {
       this.resetTimer();
       this.showSlides(this.slideIndex -= 2);
@@ -188,9 +189,7 @@ showPrevSlides() {
     }
     this.pauseSlideShow();
     this.controlsVisible = 'visible';
-
-
-  }
+}
 
    /**
    * Handler for mouse leave event which makes control hidden on large screen
@@ -203,6 +202,4 @@ showPrevSlides() {
     this.playSlideShow();
     this.controlsVisible = 'hidden';
   }
-
-
 }
